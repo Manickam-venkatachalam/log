@@ -25,19 +25,9 @@ function App() {
     setValues({...values,error:false})
     log({starttime,endtime,description})
     .then(data=>{
-      if(data.error){
-        setValues({...values,error:false})
-        log({starttime,endtime,description})
-        .then(data=>{
-          if(data.error){
-            setValues({...values,error,success:false})
-          }
-          else{
-            setValues({
-              ...values,starttime:"",endtime:"",description:"",error:"",success:true
-            })
-          }
-        })
+      if(data){
+
+        console.log(data)
         
 
       }
@@ -67,12 +57,12 @@ function App() {
             </div>
             <form action="" class="flex flex-col">
               <div className="flex-col space ">
-                <label for="description" class="text-gray-700 text-sm">
+                <label for="description" class="text-gray-700 text-sm" >
                   Description 
                 </label>
                 <textarea
                   placeholder="Message" 
-                  rows="4" onChange={handleChange("endtime")} value={description} type="text"
+                  rows="4" onChange={handleChange("description")} value={description} type="text" 
                   class="ring-1 rug-gray-300  rounded-md px-4 py-2 mt-2 text-black outline-none focus:ring-2 focus:ring-blue-600"
                 ></textarea>
                 <button class="inline-block self-end bg-cyan-500 text-white font-bold rounded-lg px-6 py-2  space-x-5  item-align-right uppercase text-sm " onClick={onSubmit}>
@@ -103,6 +93,10 @@ const errorMessage = ()=>{
         </div>
     );
 }
+
+return (<div>
+    {logForm()}
+</div>)
 
 }
 
